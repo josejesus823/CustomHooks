@@ -1,14 +1,21 @@
-import { CalculoPesadoApp } from "./components/CalculoPesadoComponent"
-import { CounterApp } from "./components/CounterComponent"
-import { FetchApp } from "./components/FetchComponent"
-import { FormsApp } from "./components/FormsComponent"
+import { CalculoPesadoComponent } from "./components/CalculoPesadoComponent"
+import { CallbackComponent } from "./components/CallbackComponent"
+import { CounterComponent } from "./components/CounterComponent"
+import { FetchComponent } from "./components/FetchComponent"
+import { FormsComponent } from "./components/FormsComponent"
+import { ListaTareasComponent } from "./components/ListaTareasComponent"
 
 export const HooksApp = () => {
   return (
     <>
       <h1>Aplicacion de Hooks</h1>
       <hr />
-      <CalculoPesadoApp />
+      {/* <CalculoPesadoComponent />
+      <CounterComponent />
+      <FormsComponent />
+      <FetchComponent /> 
+      <CallbackComponent />*/}
+      <ListaTareasComponent/>
     </>
   )
 }
