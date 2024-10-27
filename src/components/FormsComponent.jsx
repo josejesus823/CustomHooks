@@ -1,6 +1,7 @@
+import { useEffect, useRef } from "react"
 import { useForm } from "../hooks/useForm"
 
-export const FormsApp = () => {
+export const FormsComponent = () => {
 
     //Aqui estamos agregando el valor inicial del formulario segun el que necesitemos este va a variar
     const initialForm = {
@@ -18,14 +19,21 @@ export const FormsApp = () => {
         console.log(username, email, password, nickname)
     }
 
+    const focusRef = useRef()
 
-
+    useEffect(() => {
+        /*Hacer esta accion nos ayuda a que cuando se monte el componente haga el foco aqui, esto nos ayuda en la pagina 
+        con formulario para decirle a un usuario o cliente que arranque a escribir aqui)*/
+        focusRef.current.focus()
+    }, [])
+    
     return (
         <>
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Username</label>
                     <input 
+                    ref={focusRef}
                     type="text" 
                     className="form-control" 
                     id="username"
