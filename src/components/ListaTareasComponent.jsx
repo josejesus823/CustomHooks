@@ -1,37 +1,9 @@
-import { useReducer } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from '../hooks/useForm'
 export const ListaTareasComponent = () => {
 
-
-    //Este es el estado inicial
-    const initialState = [
-        { id: 1, name: 'Explicar Reducers', finalizada: false }
-    ]
-
-    //Esto es un reducer una funcion pura que recibe un estado y una accion
-    const tareaReducer = (state = initialState, action = {}) => {
-        switch (action.type) {
-            case '[TAREAS] Agregar Tarea':
-                return [...state, action.payload]
-            case '[TAREAS] Finalizar Tarea':
-                return state.map(tarea => {
-                    if (tarea.id === action.payload) {
-                        return {
-                            ...tarea,
-                            finalizada: !tarea.finalizada
-                        }
-                    } else return tarea
-                })
-            case '[TAREAS] Eliminar Tarea':
-                return state.filter(tarea => tarea.id !== action.payload)
-            case '[TAREAS] Borrar Tarea':
-                return []
-            default:
-                break;
-        }
-        return state
-    }
-
+    const tareas = useSelector(state => state)
+    const dispatch = useDispatch()
     const addTask = (event) => {
         event.preventDefault()
         if(tarea == '') return
@@ -72,7 +44,6 @@ export const ListaTareasComponent = () => {
         dispatch(action)
     }
     const { tarea, onInputChange } = useForm({ tarea: '' })
-    const [state, dispatch] = useReducer(tareaReducer, initialState)
 
 
     return (
@@ -93,7 +64,7 @@ export const ListaTareasComponent = () => {
             </form>
             <hr />
             <ul className='list-group'>
-                {state.map(tarea => {
+                {tareas.map(tarea => {
                     return (
                         <li
                             className='list-group-item d-flex justify-content-between align-items-start'
